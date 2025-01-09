@@ -130,7 +130,7 @@
 
     <div class="content">
         <div class="form-container">
-            <a href="#" class="back-button">← Back</a>
+            <a href="dashboard" class="back-button">← Back</a>
             <h1>ENTER SCHOOL TVPSS INFORMATION</h1>
 
             <form action="submitSchoolInfo" method="post" enctype="multipart/form-data">

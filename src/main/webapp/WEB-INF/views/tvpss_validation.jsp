@@ -123,11 +123,6 @@
         </nav>
     </div>
 
-    <div class="sidebar">
-        <a href="#">Dashboard</a>
-        <a href="#">Check Info</a>
-    </div>
-
     <div class="content">
         <h1>School Submission Status</h1>
 
