@@ -87,7 +87,7 @@
             <h2>Check Application Status</h2>
             
             <!-- Form -->
-            <form action="checkApplicationStatus" method="post">
+            <form action="/student/checkApplicationStatus" method="post">
                 <input type="text" name="icNo" placeholder="ENTER IC NO" required>
                 <input type="email" name="email" placeholder="ENTER EMAIL" required>
                 <button type="submit">CHECK STATUS</button>

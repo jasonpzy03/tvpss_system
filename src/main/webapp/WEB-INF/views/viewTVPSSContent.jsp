@@ -17,31 +17,11 @@
 
         <!-- School List -->
         <div style="background-color: #001f3f; border-radius: 8px; padding: 20px; color: white; display: inline-block; width: 100%; max-width: 500px;">
-            <!-- School 1 -->
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #ccc;">
-                <span>The Golden school</span>
-                <a href="#" style="text-decoration: none; color: white; background-color: #007bff; padding: 5px 10px; border-radius: 4px; font-size: 14px;">view</a>
-            </div>
-            <!-- School 2 -->
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #ccc;">
-                <span>Nurul Huda Private schools</span>
-                <a href="#" style="text-decoration: none; color: white; background-color: #007bff; padding: 5px 10px; border-radius: 4px; font-size: 14px;">view</a>
-            </div>
-            <!-- School 3 -->
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #ccc;">
-                <span>Johor Public school</span>
-                <a href="#" style="text-decoration: none; color: white; background-color: #007bff; padding: 5px 10px; border-radius: 4px; font-size: 14px;">view</a>
-            </div>
-            <!-- School 4 -->
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #ccc;">
-                <span>Bukit Pintang school</span>
-                <a href="#" style="text-decoration: none; color: white; background-color: #007bff; padding: 5px 10px; border-radius: 4px; font-size: 14px;">view</a>
-            </div>
-            <!-- School 5 -->
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
-                <span>British council academy</span>
-                <a href="#" style="text-decoration: none; color: white; background-color: #007bff; padding: 5px 10px; border-radius: 4px; font-size: 14px;">view</a>
-            </div>
+        <span>${school.name}</span>
+        <a href="viewSchoolContent?id=${school.id}" 
+           style="text-decoration: none; color: white; background-color: #007bff; padding: 5px 10px; border-radius: 4px; font-size: 14px;">View</a>
+    </div>
         </div>
     </div>
 

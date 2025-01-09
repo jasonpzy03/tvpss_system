@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface SchoolService {
     List<School> getAllSchools(); // Method to retrieve schools
+
+
     
 }

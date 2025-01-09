@@ -10,21 +10,18 @@ import com.example.repository.ApplicationRepository;
 public class ApplicationService {
 
     @Autowired
-    private ApplicationRepository applicationRepository; // Your JPA repository
+    private ApplicationRepository applicationRepository;
 
     public String getApplicationStatus(String icNo, String email) {
-        // Query the database for the application status
         CrewApplication application = applicationRepository.findByIcNoAndEmail(icNo, email);
-        
         if (application != null) {
-            return "Your application status is: " + application.getStatus(); // Assuming you have a status field
-        } else {
-            return "Application not found. Please check your IC number and email.";
+            return "Your application status is: " + application.getStatus();
         }
-    }
-    
-    public void saveApplication(CrewApplication application) {
-        applicationRepository.save(application); // This should work as long as everything is set up correctly
+        return "Application not found. Please check your IC number and email.";
     }
 
+    public void saveApplication(CrewApplication application) {
+        applicationRepository.save(application);
+    }
 }
+
