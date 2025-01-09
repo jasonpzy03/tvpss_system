@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Crew Application</title>
+    <title>Check Application Status</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
-            box-sizing: border-box; /* Ensures all elements respect padding and border */
+            box-sizing: border-box;
         }
         *, *::before, *::after {
             box-sizing: inherit;
@@ -43,13 +43,6 @@
             color: #333;
             margin-bottom: 20px;
         }
-        .form-box input, 
-        .form-box button, 
-        .form-box a {
-            width: calc(100% - 20px); /* Prevent overflow by considering padding */
-            max-width: 100%; /* Ensures proper responsiveness */
-            margin: 0 auto;
-        }
         .form-box input {
             padding: 10px;
             margin-bottom: 15px;
@@ -57,6 +50,7 @@
             border-radius: 4px;
             font-size: 14px;
             display: block;
+            width: calc(100% - 20px);
         }
         .form-box button {
             padding: 10px;
@@ -67,16 +61,10 @@
             font-size: 14px;
             cursor: pointer;
         }
-        .form-box a {
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-            background-color: #f5f5f5;
+        .result {
+            margin-top: 20px;
+            font-size: 16px;
             color: #333;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            text-align: center;
         }
         .footer {
             background-color: #333;
@@ -96,19 +84,25 @@
     <!-- Main Content -->
     <div class="container">
         <div class="form-box">
-            <h2>Crew Application</h2>
+            <h2>Check Application Status</h2>
             
             <!-- Form -->
-            <form action="/student/submitCrewApplication" method="post">
-                <input type="text" name="fullName" placeholder="FULL NAME">
-                <input type="text" name="icNo" placeholder="IC NO">
-                <input type="email" name="email" placeholder="EMAIL">
-                <input type="text" name="school" placeholder="SCHOOL">
-                <button type="submit">SUBMIT</button>
+            <form action="checkApplicationStatus" method="post">
+                <input type="text" name="icNo" placeholder="ENTER IC NO" required>
+                <input type="email" name="email" placeholder="ENTER EMAIL" required>
+                <button type="submit">CHECK STATUS</button>
             </form>
-            
-            <!-- Check Status Button -->
-            <a href="checkStatus.jsp">CHECK STATUS</a>
+
+            <!-- Result Section -->
+            <div class="result">
+                <% 
+                    // Assuming the status message is set in a request attribute
+                    String statusMessage = (String) request.getAttribute("statusMessage");
+                    if (statusMessage != null) {
+                        out.println("<p>" + statusMessage + "</p>");
+                    }
+                %>
+            </div>
         </div>
     </div>
 
