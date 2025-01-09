@@ -134,7 +134,7 @@
     <!-- Main Content -->
     <div class="form-container">
         <h1>Create TVPSS Competition</h1>
-        <form action="submitCompetition.jsp" method="post">
+        <form action="createCompetition" method="post">
             <!-- Competition Name -->
             <div class="form-group">
                 <label for="competitionName">Competition Name</label>

@@ -12,7 +12,14 @@
         http://www.springframework.org/schema/mvc  
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
         
-        <context:component-scan base-package="com.example.controller"></context:component-scan>
+    <!-- Enable annotation-driven Spring MVC -->
+    <mvc:annotation-driven />
+
+    <!-- Scan for Controllers -->
+    <context:component-scan base-package="com.example.controller" />
+
+    <!-- Scan for Configuration, Service, Repository, and Entities -->
+    <context:component-scan base-package="config,com.example.repository,com.example.service,com.example.entity" />
         
 <bean id="viewResolver"
 	class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
