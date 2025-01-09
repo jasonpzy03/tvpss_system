@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.entity.CrewApplication;
-import com.example.entity.School;
-import com.example.service.ApplicationService;
-import com.example.service.SchoolService;
 
 @Controller
 @RequestMapping("/student")
