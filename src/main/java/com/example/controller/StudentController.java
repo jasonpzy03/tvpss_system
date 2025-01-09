@@ -17,28 +17,16 @@ import com.example.service.SchoolService;
 @RequestMapping("/student")
 public class StudentController {
 
-    @Autowired
-    private SchoolService schoolService;
-
-    @Autowired
-    private ApplicationService applicationService;
+   
 
     @RequestMapping("/viewTVPSSContent")
-    public String viewTVPSSContentPage(Model model) {
-        model.addAttribute("schools", schoolService.getAllSchools());
+    public String viewTVPSSContentPage() {
         return "viewTVPSSContent";
     }
     
     @RequestMapping("/viewSchoolContent")
-    public String viewSchoolContent(@RequestParam("id") String schoolId, Model model) {
-        // Fetch school by ID or mock the data
-        School school = schoolService.getAllSchools()
-                                      .stream()
-                                      .filter(s -> s.getId().equals(schoolId))
-                                      .findFirst()
-                                      .orElse(null);
-
-        model.addAttribute("school", school);
+    public String viewSchoolContent() {
+     
         return "school_content"; // A new JSP page to display school details
     }
 
@@ -49,25 +37,10 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/submitCrewApplication", method = RequestMethod.POST)
-    public String submitCrewApplication(
-            @RequestParam("fullName") String fullName,
-            @RequestParam("icNo") String icNo,
-            @RequestParam("email") String email,
-            @RequestParam("school") String school) {
-        
-        CrewApplication application = new CrewApplication(fullName, icNo, email, school);
-        applicationService.saveApplication(application);
+    public String submitCrewApplication() {
+  
         return "redirect:/student/application_status";
     }
 
-    @PostMapping("/checkApplicationStatus")
-    public String checkApplicationStatus(
-            @RequestParam("icNo") String icNo,
-            @RequestParam("email") String email,
-            Model model) {
-        
-        String statusMessage = applicationService.getApplicationStatus(icNo, email);
-        model.addAttribute("statusMessage", statusMessage);
-        return "application_status";
-    }
+   
 }
