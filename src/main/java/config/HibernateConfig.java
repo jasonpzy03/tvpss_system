@@ -14,14 +14,14 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.example.service", "com.example.entity"})
+@ComponentScan(basePackages = {"com.example.service", "com.example.entity", "com.example.controller"})
 public class HibernateConfig {
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/tvpssSystem"); // Update if default port is used
+        dataSource.setUrl("jdbc:mysql://localhost:3306/tvpsssystem"); // Update if default port is used
         dataSource.setUsername("root");
         dataSource.setPassword(""); // Replace with your MySQL password
         return dataSource;
