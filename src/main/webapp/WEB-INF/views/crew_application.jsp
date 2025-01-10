@@ -99,7 +99,7 @@
             <h2>Crew Application</h2>
             
             <!-- Form -->
-            <form action="submitCrewApplication.jsp" method="post">
+            <form action="submitCrewApplication" method="post">
                 <input type="text" name="fullName" placeholder="FULL NAME">
                 <input type="text" name="icNo" placeholder="IC NO">
                 <input type="email" name="email" placeholder="EMAIL">
