@@ -14,6 +14,12 @@
         
         <context:component-scan base-package="com.example.controller"></context:component-scan>
         
+        <context:component-scan base-package="com.example.controller"></context:component-scan>
+        <context:component-scan base-package="com.example.service"></context:component-scan>
+        <context:component-scan base-package="com.example.entity"></context:component-scan>
+        <context:component-scan base-package="com.example.repository"></context:component-scan>
+        <context:component-scan base-package="config"></context:component-scan>
+        
 <bean id="viewResolver"
 	class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/views/" />

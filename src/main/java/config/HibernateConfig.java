@@ -14,7 +14,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.example.service", "com.example.entity", "com.example.controller"})
+@ComponentScan(basePackages = {"com.example.service", "com.example.repository", "com.example.controller", "com.example.entity"})
 public class HibernateConfig {
 
     @Bean
