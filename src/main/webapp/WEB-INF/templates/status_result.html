@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Application Status Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            box-sizing: border-box;
+        }
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+        .header {
+            background-color: #333;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .container {
+            width: 100%;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .form-box {
+            width: 90%;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .form-box h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+        }
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>TVPSS SMART MANAGEMENT SYSTEM</h1>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="form-box">
+            <h2>Application Status Result</h2>
+
+            <!-- Display Success Message -->
+            <div th:if="${successMessage}" class="success-message">
+                <p th:text="${successMessage}"></p>
+            </div>
+
+            <!-- Display Application Details -->
+            <div th:if="${application}" class="result">
+                <p><strong>Full Name:</strong> <span th:text="${application.fullName}"></span></p>
+                <p><strong>IC No:</strong> <span th:text="${application.icNo}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${application.email}"></span></p>
+                <p><strong>School:</strong> <span th:text="${application.school}"></span></p>
+            </div>
+
+            <!-- Display Error Message -->
+            <div th:if="${error}" class="error-message">
+                <p th:text="${error}"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; TVPSS, All Rights Reserved
+    </div>
+
+</body>
+</html>
