@@ -4,15 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.entity.Competition;
-import com.example.repository.PPDDao;
+import com.example.repository.CompetitionDAO;
 
 @Service
 public class PPDService {
 	
 	@Autowired
-	private PPDDao ppdDao;
+	private CompetitionDAO competitionDAO;
     public void saveCompetition(Competition competition) {
-    	ppdDao.save(competition);
+    	competitionDAO.save(competition);
     }
 
   

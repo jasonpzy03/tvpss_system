@@ -1,0 +1,15 @@
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\configuration\WebMvcConfig.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\controller\AuthController.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\controller\JPNJController.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\controller\PPDController.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\controller\RegisterController.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\controller\StudentController.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\controller\TeacherController.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\entity\Authority.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\entity\Competition.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\entity\User.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\repository\CompetitionDAO.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\repository\UserDAO.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\com\example\service\PPDService.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\config\HibernateConfig.java
+C:\Users\pzhiy\Documents\workspace-spring-tool-suite-4-4.25.0.RELEASE\tvpss_system\src\main\java\config\SecurityConfig.java
