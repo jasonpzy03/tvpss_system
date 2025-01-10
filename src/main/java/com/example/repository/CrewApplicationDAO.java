@@ -35,10 +35,12 @@ public class CrewApplicationDAO {
     
     public CrewApplication findByIcNoAndEmail(String icNo, String email) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM CrewApplication WHERE icNo = :icNo AND email = :email", CrewApplication.class)
+            CrewApplication application = session.createQuery("FROM CrewApplication WHERE icNo = :icNo AND email = :email", CrewApplication.class)
                     .setParameter("icNo", icNo)
                     .setParameter("email", email)
                     .uniqueResult(); // Returns a single result or null if none found
+            
+            return application;
         }
     }
 }

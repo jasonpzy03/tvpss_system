@@ -45,7 +45,7 @@ public class StudentController {
 
      // Indicate successful application submission
         model.addAttribute("applicationSuccess", true);
-        return "crew_application"; // Return to the same page
+        return "application_successful"; // Return to the same page
     }
     
     @RequestMapping("/checkStatus")
@@ -63,7 +63,13 @@ public class StudentController {
 
         if (application != null) {
             model.addAttribute("application", application); // Add application details to the model
-            model.addAttribute("successMessage", "CONGRATULATIONS! YOUR APPLICATION HAS BEEN ACCEPTED!"); // Add success message
+
+            // Check the status of the application
+            if (application.getStatus() == null) {
+                model.addAttribute("error", "Your application has not been accepted by the teacher.");
+            } else {
+                model.addAttribute("successMessage", "CONGRATULATIONS! YOUR APPLICATION HAS BEEN ACCEPTED!");
+            }
         } else {
             model.addAttribute("error", "Application not found.");
         }
