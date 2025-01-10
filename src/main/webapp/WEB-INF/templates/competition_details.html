@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>TVPSS Program Information</title>
+    <title>Create TVPSS Competition</title>
     <style>
         /* General Styles */
         body {
@@ -11,8 +11,8 @@
             background-color: #f9f9f9;
             color: #333;
         }
-
-        /* Navbar Styles */
+        
+         /* Navbar Styles */
         .navbar {
             background-color: #20232a;
             color: #fff;
@@ -44,38 +44,33 @@
             font-size: 22px;
             margin: 20px 0;
         }
-
+   
+          /* Main container */
         .container {
-            width: 80%;
-            max-width: 1000px;
-            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
         }
 
-        .info {
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        /* Table Styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f0f0f0;
-        }
-
-        td {
+        /* Content section */
+        .competition-details {
             background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 70%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .competition-details h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .competition-details p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
         }
 
         /* Footer Styles */
@@ -97,48 +92,26 @@
             <a href="createCompetition">Create Competition</a>
             <a href="validateTVPSSInfo">Validate School TVPSS Information</a>
             <a href="monitorTVPSSResource">Monitor School TVPSS Resources</a>
-            <a href="logout">Log Out</a>
+            <a href="#">Log Out</a>
         </div>
     </div>
 
-    <!-- Main Content -->
+  <!-- Main Content: Competition Details -->
     <div class="container">
-        <h1>INFORMATION OF TVPSS PROGRAM IN KULAI DISTRICT</h1>
-        
-        <div class="info">
-            <strong>NUMBER OF SCHOOLS:</strong> 9
+        <div class="competition-details">
+            <h2>Competition Details</h2>
+            <!-- Display Competition Details -->
+            <p><strong>Competition Name:</strong> <span th:text="${competition.name}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${competition.description}"></span></p>
+            <p><strong>Start Date:</strong> <span th:text="${competition.startDate}"></span></p>
+            <p><strong>End Date:</strong> <span th:text="${competition.endDate}"></span></p>
+            <p><strong>Location:</strong> <span th:text="${competition.location}"></span></p>
+            <p><strong>Status:</strong> <span th:text="${competition.status}"></span></p>
+            <p><strong>Total Participants:</strong> <span th:text="${competition.totalParticipants}"></span></p>
         </div>
-
-        <div class="info">
-            <strong>UPCOMING ACTIVITIES / COMPETITION:</strong>
-        </div>
-
-        <!-- Table -->
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Event Name</th>
-                    <th>Description</th>
-                    <th>Total Participants</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>24/11/2024</td>
-                    <td>Seminar Photoshooting</td>
-                    <td>Masa: 10:00am - 5:30pm<br>Tempat: UTM, Skudai</td>
-                    <td>30/100</td>
-                </tr>
-                <tr>
-                    <td>30/11/2024</td>
-                    <td>Webinar Film</td>
-                    <td>Masa: 10:00am - 5:30pm</td>
-                    <td>70/100</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
+
+
 
     <!-- Footer -->
     <footer>
@@ -146,3 +119,6 @@
     </footer>
 </body>
 </html>
+
+
+

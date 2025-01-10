@@ -1,8 +1,12 @@
 package com.example.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,42 +21,54 @@ public class PPDController {
 	 @Autowired
 	    private PPDService ppdService;
 	 
-	@RequestMapping("/dashboard")
+	@GetMapping("/dashboard")
     public String ppdDashboardPage() {
         return "ppd_dashboard";
     }
 	
-	@RequestMapping("/createCompetition")
+	@GetMapping("/createCompetition")
     public String createCompetitionPage() {
         return "create_competition";
     }
 	
-	 // POST mapping to handle form submission
-    @PostMapping("/createCompetition")
-    public String createCompetition(@RequestParam("competitionName") String competitionName,
-                                    @RequestParam("competitionDescription") String competitionDescription,
-                                    Model model) {
-        // Create a new competition object
-        Competition competition = new Competition();
-        competition.setName(competitionName);
-        competition.setDescription(competitionDescription);
+	@PostMapping("/createCompetition")
+	public String createCompetition(
+	        @RequestParam("competitionName") String competitionName,
+	        @RequestParam("competitionDescription") String competitionDescription,
+	        @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+	        @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+	        @RequestParam("location") String location,
+	        @RequestParam("status") String status,
+	        @RequestParam("totalParticipants") int totalParticipants,
+	        Model model) {
 
-        // Save the competition using the service
-        ppdService.saveCompetition(competition);
+	    // Create a new competition object
+	    Competition competition = new Competition();
+	    competition.setName(competitionName);
+	    competition.setDescription(competitionDescription);
+	    competition.setStartDate(startDate);
+	    competition.setEndDate(endDate);
+	    competition.setLocation(location);
+	    competition.setStatus(status);
+	    competition.setTotalParticipants(totalParticipants);
 
-        // Add a success message to the model
-        model.addAttribute("successMessage", "Competition created successfully!");
+	    // Save the competition using the service
+	    ppdService.saveCompetition(competition);
 
-        // Redirect back to the create competition page
-        return "create_competition";
-    }
+	    // Add a success message to the model
+	    model.addAttribute("successMessage", "Competition created successfully!");
+
+	    // Redirect back to the create competition page
+	    return "create_competition";
+	}
+
 	
-	@RequestMapping("/validateTVPSSInfo")
+	@GetMapping("/validateTVPSSInfo")
     public String validateTVPSSInfoPage() {
         return "tvpss_validation";
     }
 	
-	@RequestMapping("/monitorTVPSSResource")
+	@GetMapping("/monitorTVPSSResource")
     public String monitorTVPSSResourcePage() {
         return "monitor_tvpss_resource";
     }

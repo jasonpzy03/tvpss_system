@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,26 +130,60 @@
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="form-container">
-        <h1>Create TVPSS Competition</h1>
-        <form action="createCompetition" method="post">
-            <!-- Competition Name -->
-            <div class="form-group">
-                <label for="competitionName">Competition Name</label>
-                <input type="text" id="competitionName" name="competitionName" placeholder="Competition Name" required>
-            </div>
+  <div class="form-container">
+    <h1>Create TVPSS Competition</h1>
+    <form action="createCompetition" method="post">
+        <!-- Competition Name -->
+        <div class="form-group">
+            <label for="competitionName">Competition Name</label>
+            <input type="text" id="competitionName" name="competitionName" placeholder="Competition Name" required>
+        </div>
 
-            <!-- Competition Description -->
-            <div class="form-group">
-                <label for="competitionDescription">Competition Description</label>
-                <textarea id="competitionDescription" name="competitionDescription" placeholder="Description" required></textarea>
-            </div>
+        <!-- Competition Description -->
+        <div class="form-group">
+            <label for="competitionDescription">Competition Description</label>
+            <textarea id="competitionDescription" name="competitionDescription" placeholder="Description" required></textarea>
+        </div>
 
-            <!-- Submit Button -->
-            <button type="submit" class="submit-btn">SUBMIT</button>
-        </form>
-    </div>
+        <!-- Start Date -->
+        <div class="form-group">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" name="startDate" required>
+        </div>
+
+        <!-- End Date -->
+        <div class="form-group">
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate" name="endDate" required>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="Location" required>
+        </div>
+
+        <!-- Status -->
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+                <option value="Upcoming">Upcoming</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+
+        <!-- Total Participants -->
+        <div class="form-group">
+            <label for="totalParticipants">Total Participants</label>
+            <input type="number" id="totalParticipants" name="totalParticipants" placeholder="Total Participants" min="0" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">SUBMIT</button>
+    </form>
+</div>
+
 
     <!-- Footer -->
     <footer>
