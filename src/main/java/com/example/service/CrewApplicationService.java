@@ -22,8 +22,21 @@ public class CrewApplicationService {
     public List<CrewApplication> getAllApplications() {
         return crewApplicationDAO.getAllCrewApplications();
     }
+
     
     public CrewApplication findApplicationByIcNoAndEmail(String icNo, String email) {
         return crewApplicationDAO.findByIcNoAndEmail(icNo, email);
     }
+    
+    @Transactional
+    public void updateStatus(Long id, String status) {
+        CrewApplication application = crewApplicationDAO.findById(id);
+        if (application != null) {
+            application.setStatus(status);
+            crewApplicationDAO.saveCrewApplication(application);
+        } else {
+            throw new IllegalArgumentException("Invalid application ID");
+        }
+    }
+
 }

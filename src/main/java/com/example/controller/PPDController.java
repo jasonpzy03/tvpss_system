@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,14 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entity.Competition;
+import com.example.entity.School;
 import com.example.service.PPDService;
+import com.example.service.SchoolService;
 
 @Controller
 @RequestMapping("/ppd")
 public class PPDController {
 	
 	 @Autowired
-	    private PPDService ppdService;
+	 private PPDService ppdService;
+	 
+	 @Autowired
+	 private SchoolService schoolService; // Inject the school service
 	 
 	@GetMapping("/dashboard")
     public String ppdDashboardPage() {
@@ -69,7 +75,10 @@ public class PPDController {
     }
 	
 	@GetMapping("/monitorTVPSSResource")
-    public String monitorTVPSSResourcePage() {
-        return "monitor_tvpss_resource";
-    }
+	public String monitorTVPSSResourcePage(Model model) {
+	    List<School> schools = schoolService.getAllSchools(); // Retrieve all schools from the service
+	    model.addAttribute("schools", schools); // Add the schools to the model
+	    return "monitor_tvpss_resource"; // Return the name of the view
+	}
+
 }

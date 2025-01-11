@@ -26,12 +26,13 @@ public class CrewApplicationDAO {
             throw e;
         }
     }
-
+    
     public List<CrewApplication> getAllCrewApplications() {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from CrewApplication", CrewApplication.class).list();
         }
     }
+
     
     public CrewApplication findByIcNoAndEmail(String icNo, String email) {
         try (Session session = sessionFactory.openSession()) {
@@ -43,4 +44,11 @@ public class CrewApplicationDAO {
             return application;
         }
     }
+    
+    public CrewApplication findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(CrewApplication.class, id);
+        }
+    }
+
 }

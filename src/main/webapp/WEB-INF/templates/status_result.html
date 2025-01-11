@@ -90,11 +90,13 @@
             <h2>Application Status Result</h2>
 
 		           <!-- Display Application Details -->
-		<div th:if="${application}" class="result">
-		    
-		    <p class="success-message" th:text="${successMessage}"></p>
-		    <p class="error-message" th:text="${error}"></p> <!-- Display error message if applicable -->
-		</div>
+		<div th:if="${successMessage}" class="message success">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <div th:if="${error}" class="message error">
+        <p th:text="${error}"></p>
+    </div>
 
 	            
 

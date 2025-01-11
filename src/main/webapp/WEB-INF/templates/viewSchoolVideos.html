@@ -35,6 +35,7 @@
             height: 0;
             overflow: hidden;
             max-width: 600px; /* Limit max width */
+            max-height: 300px; /* Limit max height */
             margin: 0 auto; /* Center the video */
         }
 
@@ -43,7 +44,13 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 60%;
+        }
+
+        .no-content {
+            color: #f00; /* Red color for error message */
+            font-size: 18px;
+            margin-top: 20px;
         }
 
         .back-link {
@@ -84,8 +91,13 @@
     <!-- Main Content -->
     <div class="content">
         <h2>Videos:</h2>
-        <div class="video-container">
+        <div class="video-container" th:if="${videoUrl != null}">
             <iframe th:src="@{${videoUrl}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="no-content" th:if="${videoUrl == null}">
+            <h3>NO CONTENT AVAILABLE</h3>
+            <p>This school does not have any content available currently!</p>
         </div>
 
         <a class="back-link" href="@{/student/viewTVPSSContent}">Back to School List</a>

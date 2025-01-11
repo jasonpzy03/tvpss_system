@@ -11,9 +11,12 @@ public class School {
     private Long id;
 
     private String name;
-    
     private String videoUrl; // URL for the video content
+    private String equipment; // Add this field
+    private String studioLevel; // Add this field
 
+    
+    
     // Getters and Setters
 
     public Long getId() {
@@ -38,5 +41,21 @@ public class School {
 
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
+    }
+
+    public String getStudioLevel() {
+        return studioLevel;
+    }
+
+    public void setStudioLevel(String studioLevel) {
+        this.studioLevel = studioLevel;
     }
 }

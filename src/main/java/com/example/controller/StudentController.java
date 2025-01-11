@@ -101,16 +101,21 @@ public class StudentController {
 
             // Check the status of the application
             if (application.getStatus() == null) {
-                model.addAttribute("error", "Your application has not been accepted by the teacher.");
-            } else {
+                model.addAttribute("error", "Your application is still under review by the teacher.");
+            } else if ("Accepted".equalsIgnoreCase(application.getStatus())) {
                 model.addAttribute("successMessage", "CONGRATULATIONS! YOUR APPLICATION HAS BEEN ACCEPTED!");
+            } else if ("Rejected".equalsIgnoreCase(application.getStatus())) {
+                model.addAttribute("error", "We're sorry to inform you that your application has been rejected.");
+            } else {
+                model.addAttribute("error", "Your application status is unknown. Please contact support.");
             }
         } else {
-            model.addAttribute("error", "Application not found.");
+            model.addAttribute("error", "Application not found. Please check your IC number and email.");
         }
 
-        return "status_result"; // Return to the same page with results
+        return "status_result"; // Return to the status result page
     }
+
 
 }
 	

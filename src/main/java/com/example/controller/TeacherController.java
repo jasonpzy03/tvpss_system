@@ -7,11 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.service.CrewApplicationService;
 import com.example.service.TeacherService;
 
 import com.example.entity.Competition;
+import com.example.entity.CrewApplication;
 
 @Controller
 @RequestMapping("/teacher")
@@ -20,6 +24,8 @@ public class TeacherController {
 	@Autowired 
 	private TeacherService teacherService;
 	
+	 @Autowired
+	 private CrewApplicationService crewApplicationService; // Inject the service
 	
     @GetMapping("/dashboard")
     public String teacherDashboardPage(Model model) {
@@ -55,9 +61,31 @@ public class TeacherController {
     }
     
     @GetMapping("/crewapplications")
-    public String viewTVPSSCrewApplication() {
-        return "view_tvpss_crew_application";
+    public String viewCrewApplications(Model model) {
+        List<CrewApplication> applications = crewApplicationService.getAllApplications();
+        System.out.println("Applications retrieved in controller: " + applications); // Debug log
+        model.addAttribute("applications", applications);
+        return "view_tvpss_crew_application"; // Ensure this matches your Thymeleaf template name
     }
+
+
+
+
+    @PostMapping("/crewapplications/{id}/update")
+    public String updateCrewApplicationStatus(
+            @PathVariable Long id,
+            @RequestParam String action,
+            Model model) {
+        try {
+            crewApplicationService.updateStatus(id, action.equalsIgnoreCase("accept") ? "Accepted" : "Rejected");
+            model.addAttribute("successMessage", "Application status updated successfully!");
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Error updating application status.");
+        }
+        return "redirect:/teacher/crewapplications";
+    }
+
+    
     
     @GetMapping("/updateinformation")
     public String updateTVPSSInformation() {
