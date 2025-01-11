@@ -1,7 +1,12 @@
 package com.example.controller;
 
 import com.example.entity.CrewApplication;
+import com.example.entity.School;
 import com.example.service.CrewApplicationService;
+import com.example.service.SchoolService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +21,39 @@ public class StudentController {
     @Autowired
     private CrewApplicationService crewApplicationService; // Inject the service
 
+    @Autowired
+    private SchoolService schoolService; // Inject the school service
+
     @RequestMapping("/viewTVPSSContent")
-    public String viewTVPSSContentPage() {
-        return "viewTVPSSContent";
+    public String viewTVPSSContentPage(Model model) {
+        List<School> schools = schoolService.getAllSchools();
+        model.addAttribute("schools", schools); // Add schools to the model
+        return "viewTVPSSContent"; // Return the view page
+    }
+    
+    @RequestMapping("/viewSchoolContent")
+    public String viewSchoolContent(@RequestParam("id") Long schoolId, Model model) {
+        School school = schoolService.findSchoolById(schoolId);
+        if (school != null) {
+            model.addAttribute("school", school);
+            model.addAttribute("videoUrl", school.getVideoUrl()); // Pass the video URL to the view
+        } else {
+            model.addAttribute("error", "School not found.");
+        }
+        return "viewSchoolContent"; // Return the view page
+    }
+
+ // New method to show video list
+    @RequestMapping("/viewSchoolVideos")
+    public String viewSchoolVideos(@RequestParam("id") Long schoolId, Model model) {
+        School school = schoolService.findSchoolById(schoolId);
+        if (school != null) {
+            model.addAttribute("school", school);
+            model.addAttribute("videoUrl", school.getVideoUrl()); // Pass the video URL to the view
+        } else {
+            model.addAttribute("error", "School not found.");
+        }
+        return "viewSchoolVideos"; // Return a new view page for videos
     }
 
     @RequestMapping("/applycrew")
