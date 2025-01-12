@@ -63,6 +63,7 @@ public class TeacherController {
     @GetMapping("/crewapplications")
     public String viewCrewApplications(Model model) {
         List<CrewApplication> applications = crewApplicationService.getAllApplications();
+        System.out.println(crewApplicationService.getAllApplications());
         System.out.println("Applications retrieved in controller: " + applications); // Debug log
         model.addAttribute("applications", applications);
         return "view_tvpss_crew_application"; // Ensure this matches your Thymeleaf template name
