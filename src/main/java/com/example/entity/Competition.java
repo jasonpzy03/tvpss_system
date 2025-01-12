@@ -26,6 +26,10 @@ public class Competition {
 
     @Column(name = "location", length = 200)
     private String location;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "district", nullable = false)
+    private District district;
 
     @Column(name = "status", length = 50)
     private String status;
@@ -96,6 +100,14 @@ public class Competition {
     public void setLocation(String location) {
         this.location = location;
     }
+    
+    public District getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(District district) {
+        this.district = district;
+    }
 
     public String getStatus() {
         return status;
@@ -123,6 +135,7 @@ public class Competition {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", location='" + location + '\'' +
+                ", district='" + district + '\'' +
                 ", status='" + status + '\'' +
                 ", totalParticipants=" + totalParticipants +
                 '}';
