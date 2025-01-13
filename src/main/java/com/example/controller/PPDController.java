@@ -62,7 +62,7 @@ public class PPDController {
 	        @RequestParam("status") String status,
 	        @RequestParam("totalParticipants") int totalParticipants,
 	        Model model) { 
-     
+      
 	    // Create a new competition object
 	    Competition competition = new Competition();
 	    competition.setName(competitionName);
