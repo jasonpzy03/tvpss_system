@@ -12,30 +12,21 @@
             color: #333;
         }
         
-         /* Navbar Styles */
-        .navbar {
-            background-color: #20232a;
-            color: #fff;
-            padding: 10px 20px;
+       .header {
+            background-color: #101820;
+            color: white;
+            padding: 10px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
-
-        .navbar a {
-            color: #fff;
+        .header a {
+            color: white;
             text-decoration: none;
             margin: 0 15px;
-            font-size: 14px;
         }
-
-        .navbar a:hover {
+        .header a:hover {
             text-decoration: underline;
-        }
-
-        .navbar .logo {
-            font-weight: bold;
-            font-size: 18px;
         }
 
         /* Page Header */
@@ -118,33 +109,31 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo">TVPSS SMART MANAGEMENT SYSTEM</div>
-        <div>
+      <div class="header">
+        <span>TVPSS SMART MANAGEMENT SYSTEM</span>
+        <nav>
             <a href="dashboard">Home</a>
             <a href="createCompetition">Create Competition</a>
-            <a href="validateTVPSSInfo">Validate School TVPSS Information</a>
+            <a href="statistics">Statistics</a>
             <a href="monitorTVPSSResource">Monitor School TVPSS Resources</a>
             <a href="/tvpss_system/logout">Log Out</a>
-        </div>
+        </nav>
     </div>
 
   <div class="form-container">
     <h1>Create TVPSS Competition</h1>
-    <form th:action="@{/ppd/createCompetition}" method="post" th:object="${competition}">
+    <form th:action="@{/jpnj/createCompetition}" method="post">
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-      
         <!-- Competition Name -->
         <div class="form-group">
-            <label for="competitionName">Competition Name</label>
-            <input type="text" id="competitionName" name="competitionName" placeholder="Competition Name" required>
+            <label for="name">Competition Name</label>
+            <input type="text" id="name" name="name" placeholder="Competition Name" required>
         </div>
 
         <!-- Competition Description -->
         <div class="form-group">
-            <label for="competitionDescription">Competition Description</label>
-            <textarea id="competitionDescription" name="competitionDescription" placeholder="Description" required></textarea>
+            <label for="description">Competition Description</label>
+            <textarea id="description" name="description" placeholder="Description" required></textarea>
         </div>
 
         <!-- Start Date -->

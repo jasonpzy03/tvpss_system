@@ -33,13 +33,18 @@ public class PPDController {
 	 
 	 @Autowired
 	 private SchoolService schoolService; // Inject the school service
-	 
+	  
 	@GetMapping("/dashboard")
 	public String ppdDashboardPage(Model model) {
+		District[] districts = District.values();
+		  
 	    List<Competition> competitionList = ppdService.getAllCompetitions(); 
+
+	    model.addAttribute("competitions", competitionList);
+	    model.addAttribute("districts", districts);
 	    model.addAttribute("competitionList", competitionList); 
 	    return "ppd_dashboard";
-	}
+	} 
 	
 	@GetMapping("/createCompetition")
     public String createCompetitionPage() {
@@ -57,7 +62,7 @@ public class PPDController {
 	        @RequestParam("status") String status,
 	        @RequestParam("totalParticipants") int totalParticipants,
 	        Model model) { 
-
+     
 	    // Create a new competition object
 	    Competition competition = new Competition();
 	    competition.setName(competitionName);

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create TVPSS Competition</title>
+    <title>Edit Competition</title>
     <style>
         /* General Styles */
         body {
@@ -130,76 +130,66 @@
         </div>
     </div>
 
-  <div class="form-container">
-    <h1>Create TVPSS Competition</h1>
-    <form th:action="@{/ppd/createCompetition}" method="post" th:object="${competition}">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-      
-        <!-- Competition Name -->
-        <div class="form-group">
-            <label for="competitionName">Competition Name</label>
-            <input type="text" id="competitionName" name="competitionName" placeholder="Competition Name" required>
-        </div>
+ <div class="form-container">
+        <h1>Edit Program</h1>
+        <form th:action="@{/jpnj/updateCompetition/{id}(id=${competition.id})}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            
+            <div class="form-group">
+                <label for="name">Program Name</label>
+                <input type="text" id="name" name="name" th:value="${competition.name}" required>
+            </div>
 
-        <!-- Competition Description -->
-        <div class="form-group">
-            <label for="competitionDescription">Competition Description</label>
-            <textarea id="competitionDescription" name="competitionDescription" placeholder="Description" required></textarea>
-        </div>
+            <div class="form-group">
+                <label for="description">Program Description</label>
+                <textarea id="description" name="description" required th:text="${competition.description}"></textarea>
+            </div>
 
-        <!-- Start Date -->
-        <div class="form-group">
-            <label for="startDate">Start Date</label>
-            <input type="date" id="startDate" name="startDate" required>
-        </div>
-
-        <!-- End Date -->
-        <div class="form-group">
-            <label for="endDate">End Date</label>
-            <input type="date" id="endDate" name="endDate" required>
-        </div>
-
-        <!-- Location -->
-        <div class="form-group">
-            <label for="location">Location</label>
-            <input type="text" id="location" name="location" placeholder="Location" required>
-        </div>
-        
-         <div class="form-group">
-		    <label for="district">District</label>
-		    <select id="district" name="district" required>
-		        <option value="">Select District</option>
-		        <option value="JOHOR_BAHRU">Johor Bahru</option>
-		        <option value="KULAI">Kulai</option>
-		        <option value="PONTIAN">Pontian</option>
-		        <option value="KOTA_TINGGI">Kota Tinggi</option>
-		        <option value="MERSING">Mersing</option>
-		        <option value="MUAR">Muar</option>
-		        <option value="BATU_PAHAT">Batu Pahat</option>
-		        <option value="SEGAMAT">Segamat</option>
-		        <option value="KLUANG">Kluang</option>
-		        <option value="TANGKAK">Tangkak</option>
-		    </select>
-		</div>
-
-        <!-- Status -->
-        <div class="form-group">
-            <label for="status">Status</label>
-            <select id="status" name="status" required>
-                <option value="Upcoming">Upcoming</option>
-                <option value="Ongoing">Ongoing</option>
-                <option value="Completed">Completed</option>
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" name="startDate" 
+                       th:value="${#temporals.format(competition.startDate, 'yyyy-MM-dd')}" required>
+            </div>
+            
+              <div class="form-group">
+                <label for="endDate">Start Date</label>
+                <input type="date" id="endDate" name="endDate" 
+                       th:value="${#temporals.format(competition.endDate, 'yyyy-MM-dd')}" required>
+            </div>
+            
+  			<div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" th:value="${competition.location}" required>
+            </div>
+            
+			 <div class="form-group">
+            <label for="district">District</label>
+            <select id="district" name="district" required>
+                <option value="">Select District</option>
+                <option th:each="districtOption : ${T(com.example.entity.District).values()}"
+                        th:value="${districtOption}"
+                        th:text="${districtOption.displayName}"
+                        th:selected="${competition.district == districtOption}">
+                </option>
             </select>
         </div>
+					
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" name="status" required>
+                    <option value="Upcoming" th:selected="${competition.status == 'Upcoming'}">Upcoming</option>
+                    <option value="Ongoing" th:selected="${competition.status == 'Ongoing'}">Ongoing</option>
+                    <option value="Completed" th:selected="${competition.status == 'Completed'}">Completed</option>
+                </select>
+            </div>
 
-        <!-- Total Participants -->
-        <div class="form-group">
-            <label for="totalParticipants">Total Participants</label>
-            <input type="number" id="totalParticipants" name="totalParticipants" placeholder="Total Participants" min="0" required>
-        </div>
-
+            <div class="form-group">
+                <label for="totalParticipants">Total Participants</label>
+                <input type="number" id="totalParticipants" name="totalParticipants" 
+                       th:value="${competition.totalParticipants}" min="0" required>
+            </div>
         <!-- Submit Button -->
-        <button type="submit" class="submit-btn">SUBMIT</button>
+        <button type="submit" class="submit-btn">Update Competition</button>
     </form>
 </div>
 

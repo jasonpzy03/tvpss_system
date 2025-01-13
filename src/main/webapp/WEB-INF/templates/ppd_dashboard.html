@@ -77,7 +77,33 @@
         td {
             background-color: #fff;
         }
+   .filter-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .filter-group label {
+            font-weight: bold;
+            min-width: 100px;
+        }
+
+        .filter-group select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 200px;
+            background-color: #f8f9fa;
+        }
         /* Footer Styles */
         footer {
             text-align: center;
@@ -97,13 +123,15 @@
             <a href="createCompetition">Create Competition</a>
             <a href="validateTVPSSInfo">Validate School TVPSS Information</a>
             <a href="monitorTVPSSResource">Monitor School TVPSS Resources</a>
-            <a href="/logout">Log Out</a>
+            <a href="/tvpss_system/logout">Log Out</a>
         </div>
     </div>
-
+		
     <!-- Main Content -->
     <div class="container">
-        <h1>INFORMATION OF TVPSS PROGRAM IN KULAI DISTRICT</h1>
+        <h1>INFORMATION OF TVPSS PROGRAM IN <span class="district-name">KULAI </span>DISTRICT</h1>
+        
+        
         
         <div class="info">
             <strong>NUMBER OF SCHOOLS:</strong> 
@@ -112,47 +140,90 @@
         <div class="info">
             <strong>UPCOMING ACTIVITIES / COMPETITION:</strong>
         </div>
-
-        <!-- Table -->
-        <table>
-            <thead>
-                <tr>
-                   	<th>Program Name</th>
-	                <th>Description</th>
-	                <th>Start Date</th>
-	                <th>End Date</th>
-	                <th>Location</th>
-	                <th>District</th> 
-	                <th>Status</th>
-	                <th>Total Participants</th>
-	                <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="competition : ${competitionList}">
-                <td th:text="${competition.name}"></td>
-                <td th:text="${competition.description}"></td>
-                <td th:text="${#temporals.format(competition.startDate, 'dd-MM-yyyy')}"></td>
-                <td th:text="${#temporals.format(competition.endDate, 'dd-MM-yyyy')}"></td>
-                <td th:text="${competition.location}"></td>
-                <td th:text="${competition.district.displayName}"></td> 
-                <td th:text="${competition.status}"></td>
-                <td th:text="${competition.totalParticipants}"></td>
-                <td>
-                    <a th:href="@{/ppd/editCompetition/{id}(id=${competition.id})}" class="action-btn edit">Edit</a>
-                    <a th:href="@{/ppd/deleteCompetition/{id}(id=${competition.id})}" 
-                       class="action-btn delete"
-                       onclick="return confirm('Are you sure you want to delete this Competition?')">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-         
+		<!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-group">
+                <label for="districtFilter">District:</label>
+                <select id="districtFilter" onchange="filterCompetitions()">
+                    <option value="">All Districts</option>
+                    <option th:each="district : ${districts}"
+                            th:value="${district.name()}"
+                            th:text="${district.displayName}">
+                    </option>
+                </select>
+            </div>
+        </div>
+		
+        <!-- Competition Tables -->
+        <div class="competition-tables">
+            <!-- Upcoming Competitions -->
+            <div class="section">
+                <h2>Upcoming Competitions</h2>
+                <table class="competition-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Location</th>
+                            <th>District</th>
+                            <th>Status</th>
+                            <th>Total Participants</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                      <tbody>
+                        <tr th:each="competition : ${competitions}" 
+                            th:data-district="${competition.district.name()}"
+                            class="competition-row">
+                            <td th:text="${competition.name}"></td>
+                            <td th:text="${competition.description}"></td>
+                            <td th:text="${#temporals.format(competition.startDate, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${#temporals.format(competition.endDate, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${competition.location}"></td>
+                            <td th:text="${competition.district.displayName}"></td>
+                            <td>
+                              <span class="status-badge status-ongoing">Ongoing</span>
+                            </td>
+                            <td th:text="${competition.totalParticipants}"></td>
+                            <td>
+                                <a th:href="@{/ppd/editCompetition/{id}(id=${competition.id})}" 
+                                   class="action-btn edit">Edit</a>
+                                <a th:href="@{/ppd/deleteCompetition/{id}(id=${competition.id})}" 
+                                   class="action-btn delete"
+                                   onclick="return confirm('Are you sure you want to delete this competition?')">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+         </div>
     </div>
-
+</div>
     <!-- Footer -->
     <footer>
         © TVPSS, All Rights Reserved
     </footer>
+    
+     <script>
+        function filterCompetitions() {
+            const districtFilter = document.getElementById('districtFilter').value;
+            const rows = document.getElementsByClassName('competition-row');
+
+            Array.from(rows).forEach(row => {
+                const rowDistrict = row.getAttribute('data-district');
+                if (!districtFilter || rowDistrict === districtFilter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        
+		}
+        // Initialize filter on page load
+        document.addEventListener('DOMContentLoaded', filterCompetitions);
+    </script>
 </body>
 </html>

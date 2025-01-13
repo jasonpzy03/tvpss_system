@@ -16,6 +16,7 @@ import com.example.service.TeacherService;
 
 import com.example.entity.Competition;
 import com.example.entity.CrewApplication;
+import com.example.entity.District;
 
 @Controller
 @RequestMapping("/teacher")
@@ -53,11 +54,20 @@ public class TeacherController {
 
         // Return the Thymeleaf template for the competition details page
         return "competition_details";  // This should correspond to your HTML page
-    }
-    
-    @GetMapping("/availablecompetitions")
-    public String availableCompetitions() {
-        return "available_competitions";
+    }  
+      
+    @GetMapping("/availablecompetitions") 
+    public String availableCompetitions(Model model) {
+    	List<Competition> competitions = teacherService.getAllCompetitions();
+		model.addAttribute("competitions", competitions);
+		model.addAttribute("districts", District.values());
+		System.out.println("Number of competitions: " + competitions.size());
+		  for (Competition comp : competitions) {
+			  System.out.println("Competition: " + comp.getName() + ", District: " + comp.getDistrict());
+	      }
+	        
+	    return "available_competitions";
+
     }
     
     @GetMapping("/crewapplications")
@@ -68,7 +78,7 @@ public class TeacherController {
         model.addAttribute("applications", applications);
         return "view_tvpss_crew_application"; // Ensure this matches your Thymeleaf template name
     }
-
+ 
 
 
 

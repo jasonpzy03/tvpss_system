@@ -14,6 +14,19 @@ import com.example.repository.JPNJDao;
 public class JPNJService {
 	@Autowired
     private JPNJDao jpnjDao;
+	
+	public void createCompetition(Competition competition) {
+		jpnjDao.saveCompetition(competition);
+	}
+	    
+	public void updateCompetition(Competition competition) {
+	    jpnjDao.updateCompetition(competition);
+	}
+	    
+	public void deleteCompetition(Long id) {
+	    jpnjDao.deleteCompetition(id);
+	 
+	}
 
     public List<Competition> getAllCompetitions() {
         return jpnjDao.getAllCompetitions();
@@ -27,8 +40,9 @@ public class JPNJService {
         return jpnjDao.getOngoingCompetitions();
     }
 
-    public List<Competition> getCompetitionsByDistrict(String district) {
-        return jpnjDao.getCompetitionsByDistrict(district);
+    public Competition getCompetitionById(Long id) {
+    	return jpnjDao.getCompetitionById(id);
     }
-
+    
+  
 }

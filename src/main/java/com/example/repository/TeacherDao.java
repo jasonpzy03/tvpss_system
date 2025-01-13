@@ -16,9 +16,14 @@ public class TeacherDao {
 	    private SessionFactory sessionFactory;
 
 	    public List<Competition> findAll() {
-	        Session session = sessionFactory.getCurrentSession();
-	        return session.createQuery("from Competition where startDate >= current_date order by startDate", Competition.class)
-	                      .getResultList();
+	    	  Session session = sessionFactory.getCurrentSession();
+	            String hql = "FROM Competition c " +
+	                        "WHERE c.status IN ('UPCOMING', 'ONGOING') " +
+	                        "AND c.endDate >= current_date " +
+	                        "ORDER BY c.startDate ASC";
+	            
+	            return session.createQuery(hql, Competition.class)
+	                         .getResultList();
 	    }
 
 	    // Fetch competition by ID

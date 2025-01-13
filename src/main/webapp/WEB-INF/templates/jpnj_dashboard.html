@@ -131,6 +131,29 @@
             font-size: 14px;
             color: #555;
         }
+        
+        .action-btn {
+        padding: 5px 10px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 12px;
+        margin-right: 5px;
+        display: inline-block;
+    }
+
+    .edit {
+        background-color: #2196F3;
+        color: white;
+    }
+
+    .delete {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .action-btn:hover {
+        opacity: 0.8;
+    }
     </style>
 </head>
 <body>
@@ -138,9 +161,10 @@
         <span>TVPSS SMART MANAGEMENT SYSTEM</span>
         <nav>
             <a href="dashboard">Home</a>
+            <a href="createCompetition">Create Competition</a>
             <a href="statistics">Statistics</a>
             <a href="monitorTVPSSResource">Monitor School TVPSS Resources</a>
-            <a href="#">Log Out</a>
+            <a href="/tvpss_system/logout">Log Out</a>
         </nav>
     </div>
  <div class="dashboard-container">
@@ -165,21 +189,7 @@
                 <div class="stat-label">Ongoing Competitions</div>
             </div>
         </div>
-        
-         <!-- District Filter -->
-        <div class="district-filter">
-            <form th:action="@{/jpnj/filterByDistrict}" method="get">
-                <select name="district" onchange="this.form.submit()">
-                    <option value="">All Districts</option>
-                    <option th:each="district : ${T(com.example.entity.District).values()}"
-                            th:value="${district}"
-                            th:text="${district.displayName}"
-                            th:selected="${district == selectedDistrict}">
-                    </option>
-                </select>
-            </form>
-        </div>
-      <!-- Update each competition table section to match PPD format -->
+   
 
 <!-- Upcoming Competitions Section -->
 <div class="section">
@@ -197,6 +207,7 @@
                 <th>District</th>
                 <th>Status</th>
                 <th>Total Participants</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -211,6 +222,12 @@
                     <span class="status-badge status-upcoming">Upcoming</span>
                 </td>
                 <td th:text="${competition.totalParticipants}"></td>
+                <td>
+				    <a th:href="@{/jpnj/editCompetition/{id}(id=${competition.id})}" class="action-btn edit">Edit</a>
+				    <a th:href="@{/jpnj/deleteCompetition/{id}(id=${competition.id})}" 
+				       class="action-btn delete"
+				       onclick="return confirm('Are you sure you want to delete this competition?')">Delete</a>
+				</td>
             </tr>
         </tbody>
     </table>
@@ -232,6 +249,7 @@
                 <th>District</th>
                 <th>Status</th>
                 <th>Total Participants</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -246,6 +264,12 @@
                     <span class="status-badge status-ongoing">Ongoing</span>
                 </td>
                 <td th:text="${competition.totalParticipants}"></td>
+                <td>
+				    <a th:href="@{/jpnj/editCompetition/{id}(id=${competition.id})}" class="action-btn edit">Edit</a>
+				    <a th:href="@{/jpnj/deleteCompetition/{id}(id=${competition.id})}" 
+				       class="action-btn delete"
+				       onclick="return confirm('Are you sure you want to delete this competition?')">Delete</a>
+				</td>
             </tr>
         </tbody>
     </table>
@@ -267,6 +291,7 @@
                 <th>District</th>
                 <th>Status</th>
                 <th>Total Participants</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -281,6 +306,12 @@
                     <span class="status-badge status-completed">Completed</span>
                 </td>
                 <td th:text="${competition.totalParticipants}"></td>
+                <td>
+				    <a th:href="@{/jpnj/editCompetition/{id}(id=${competition.id})}" class="action-btn edit">Edit</a>
+				    <a th:href="@{/jpnj/deleteCompetition/{id}(id=${competition.id})}" 
+				       class="action-btn delete"
+				       onclick="return confirm('Are you sure you want to delete this competition?')">Delete</a>
+				</td>
             </tr>
         </tbody>
     </table>

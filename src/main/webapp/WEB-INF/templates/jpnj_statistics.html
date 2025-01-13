@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>TVPSS Smart Management System</title>
     <style>
@@ -52,9 +51,10 @@
         <span>TVPSS SMART MANAGEMENT SYSTEM</span>
         <nav>
             <a href="dashboard">Home</a>
+            <a href="createCompetition">Create Competition</a>
             <a href="statistics">Statistics</a>
             <a href="monitorTVPSSResource">Monitor School TVPSS Resources</a>
-            <a href="#">Log Out</a>
+            <a href="/tvpss_system/logout">Log Out</a>
         </nav>
     </div>
 

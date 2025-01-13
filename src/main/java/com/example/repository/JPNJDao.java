@@ -53,18 +53,44 @@ public class JPNJDao {
 	        }
 	    }
 	    
-	    @SuppressWarnings("unchecked")
-	    public List<Competition> getCompetitionsByDistrict(String district) {
+	    public void saveCompetition(Competition competition) {
 	        try {
 	            Session session = sessionFactory.getCurrentSession();
-	            Query<Competition> query = session.createQuery(
-	                "FROM Competition WHERE district = :district ORDER BY startDate");
-	            query.setParameter("district", district);
-	            return query.list();
+	            session.save(competition);
 	        } catch (Exception e) {
-	            e.printStackTrace();
-	            return new ArrayList<>();
+	            throw new RuntimeException("Database error while saving competition", e);
 	        }
 	    }
+	    
+	    public void updateCompetition(Competition competition) {
+	        try {
+	            Session session = sessionFactory.getCurrentSession();
+	            session.update(competition);
+	        } catch (Exception e) {
+	            throw new RuntimeException("Database error while updating competition", e);
+	        }
+	    }
+
+	    public void deleteCompetition(Long id) {
+	        try {
+	            Session session = sessionFactory.getCurrentSession();
+	            Competition competition = session.get(Competition.class, id);
+	            if (competition != null) {
+	                session.delete(competition);
+	            }
+	        } catch (Exception e) {
+	            throw new RuntimeException("Database error while deleting competition", e);
+	        }
+	    }
+	    
+	    public Competition getCompetitionById(Long id) {
+	        try {
+	            Session session = sessionFactory.getCurrentSession();
+	            return session.get(Competition.class, id);
+	        } catch (Exception e) {
+	            return null;
+	        }
+	    }
+
 
 }

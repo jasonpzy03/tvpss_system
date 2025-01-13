@@ -16,9 +16,9 @@ public class TeacherService {
 
 	    @Transactional
 	    public List<Competition> getAllCompetitions() {
-	        return teacherDao.findAll();
+	        return teacherDao.findAll();      
 	    }
-	    
+	     
 	    @Transactional
 	    // Method to get a competition by its ID
 	    public Competition getCompetitionById(Long competitionId) {

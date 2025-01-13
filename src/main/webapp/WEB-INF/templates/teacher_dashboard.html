@@ -99,13 +99,15 @@
             text-decoration: underline;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 15px 0;
-            color: #fff;
-            margin-top: 30px;
-        }
+       /* Footer */
+		footer {
+		    text-align: center;
+		    padding: 10px;
+		    background-color: #f4f4f4;
+		    font-size: 14px;
+		    color: #555;
+		    margin-top: 20px;
+		}
     </style>
 </head>
 <body>
@@ -119,7 +121,7 @@
             <a href="availablecompetitions">Available Competitions</a>
             <a href="updateinformation">Update TVPSS Information</a>
             <a href="crewapplications">View TVPSS Crew Application</a>
-            <a href="#">Log Out</a>
+            <a href="/tvpss_system/logout">Log Out</a>
         </div>
     </div>
 
@@ -151,6 +153,7 @@
 	    <div th:if="${competitions == null || competitions.isEmpty()}">
 	        <p>No upcoming competitions available.</p>
 	    </div>
+	</div>
 </div>
 
     <!-- Footer -->
