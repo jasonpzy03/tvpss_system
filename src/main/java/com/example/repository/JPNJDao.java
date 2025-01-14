@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.entity.Competition;
+import com.example.entity.Participant;
 
 @Repository
 public class JPNJDao {
@@ -92,5 +93,13 @@ public class JPNJDao {
 	        }
 	    }
 
-
+	    public List<Participant> getAllParticipants() {
+	        Session session = sessionFactory.getCurrentSession();
+	        return session.createQuery(
+	            "FROM Participant cp " +
+	            "JOIN FETCH cp.competition " +
+	            "JOIN FETCH cp.user " +
+	            "ORDER BY cp.joinDate DESC", Participant.class)
+	            .getResultList();
+	    }
 }

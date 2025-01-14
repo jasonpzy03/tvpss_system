@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.entity.Competition;
+import com.example.entity.Participant;
 import com.example.repository.PPDDao;
 
 @Service
@@ -55,4 +57,11 @@ public class PPDService {
             return new ArrayList<>(); // Return empty list instead of null
         }
     }
+    
+    @Transactional(readOnly = true)
+    public List<Participant> getAllParticipants() {
+        return ppdDao.getAllParticipants();
+    }
+    
+    
 }

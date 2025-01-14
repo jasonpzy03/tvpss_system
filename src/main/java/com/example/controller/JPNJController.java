@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.entity.Competition;
 import com.example.entity.District;
+import com.example.entity.Participant;
 import com.example.service.JPNJService;    
 
 @Controller
@@ -28,17 +29,19 @@ public class JPNJController {
 
     @GetMapping("/dashboard")
     public String jpnjDashboardPage(Model model) {
-        try {
+        try { 
             // Get competitions by status  
             List<Competition> upcomingCompetitions = jpnjService.getUpcomingCompetitions();
             List<Competition> ongoingCompetitions = jpnjService.getOngoingCompetitions();
             List<Competition> allCompetitions = jpnjService.getAllCompetitions();
+            List<Participant> participants = jpnjService.getAllParticipants();
  
             // Add to model
             model.addAttribute("upcomingCompetitions", upcomingCompetitions);
             model.addAttribute("ongoingCompetitions", ongoingCompetitions);
             model.addAttribute("allCompetitions", allCompetitions); 
-            model.addAttribute("totalSchools", 50); 
+            model.addAttribute("participants", participants);
+            model.addAttribute("totalSchools", 50);  
 
             return "jpnj_dashboard";   
         } catch (Exception e) {

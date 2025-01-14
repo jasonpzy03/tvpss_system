@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.entity.Competition;
+import com.example.entity.Participant;
 
 @Repository
 @Transactional
@@ -72,4 +73,16 @@ public class PPDDao {
 	            throw new RuntimeException("Error getting all competitions: " + e.getMessage());
 	        }
 	    }
+	    
+	    public List<Participant> getAllParticipants() {
+	        Session session = sessionFactory.getCurrentSession();
+	        return session.createQuery(
+	            "FROM Participant cp " +
+	            "JOIN FETCH cp.competition " +
+	            "JOIN FETCH cp.user " +
+	            "ORDER BY cp.joinDate DESC", Participant.class)
+	            .getResultList();
+	    }
+	    
+	    
 }

@@ -3,6 +3,7 @@ package com.example.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.service.CrewApplicationService;
 import com.example.service.TeacherService;
@@ -95,8 +97,31 @@ public class TeacherController {
         }
         return "redirect:/teacher/crewapplications";
     }
-
     
+    
+
+    @PostMapping("/competition/{id}/join")
+    public String joinCompetition(@PathVariable("id") Long competitionId, 
+                                Authentication authentication,
+                                RedirectAttributes redirectAttributes) {
+        try {
+            String username = authentication.getName(); // Get username from authentication
+            teacherService.joinCompetition(competitionId, username);
+            redirectAttributes.addFlashAttribute("successMessage", "Successfully joined the competition!");
+            return "redirect:/teacher/mycompetitions";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/teacher/availablecompetitions";
+        } 
+    } 
+
+    @GetMapping("/mycompetitions")
+    public String myCompetitions(Model model, Authentication authentication) {
+        String username = authentication.getName();
+        List<Competition> userCompetitions = teacherService.getUserCompetitions(username);
+        model.addAttribute("competitions", userCompetitions); 
+        return "my_competitions";
+    }
     
     @GetMapping("/updateinformation")
     public String updateTVPSSInformation() {

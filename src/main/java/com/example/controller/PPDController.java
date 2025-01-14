@@ -20,7 +20,7 @@ import com.example.entity.Competition;
 import com.example.entity.School;
 
 import com.example.entity.District;
-
+import com.example.entity.Participant;
 import com.example.service.PPDService;
 import com.example.service.SchoolService;
 
@@ -37,12 +37,14 @@ public class PPDController {
 	@GetMapping("/dashboard")
 	public String ppdDashboardPage(Model model) {
 		District[] districts = District.values();
-		  
+		   
 	    List<Competition> competitionList = ppdService.getAllCompetitions(); 
+	    List<Participant> participants = ppdService.getAllParticipants();
 
 	    model.addAttribute("competitions", competitionList);
+        model.addAttribute("participants", participants);
 	    model.addAttribute("districts", districts);
-	    model.addAttribute("competitionList", competitionList); 
+	    model.addAttribute("competitionList", competitionList);  
 	    return "ppd_dashboard";
 	} 
 	
@@ -62,7 +64,7 @@ public class PPDController {
 	        @RequestParam("status") String status,
 	        @RequestParam("totalParticipants") int totalParticipants,
 	        Model model) { 
-      
+       
 	    // Create a new competition object
 	    Competition competition = new Competition();
 	    competition.setName(competitionName);

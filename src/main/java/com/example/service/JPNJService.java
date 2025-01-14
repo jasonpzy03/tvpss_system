@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.entity.Competition;
+import com.example.entity.Participant;
 import com.example.repository.JPNJDao;
 
 @Service
@@ -44,5 +45,9 @@ public class JPNJService {
     	return jpnjDao.getCompetitionById(id);
     }
     
+    @Transactional(readOnly = true)
+    public List<Participant> getAllParticipants() {
+        return jpnjDao.getAllParticipants();
+    }
   
 }

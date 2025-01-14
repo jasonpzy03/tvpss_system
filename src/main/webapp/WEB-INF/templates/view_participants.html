@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create TVPSS Competition</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+         /* Navbar Styles */
+        .navbar {
+            background-color: #20232a;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .logo {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Page Header */
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            margin: 20px 0;
+        }
+          .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+         .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .stat-card p {
+            margin: 10px 0 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2196F3;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #20232a;
+            color: #fff;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">TVPSS SMART MANAGEMENT SYSTEM</div>
+        <div>
+            <a href="dashboard">Home</a>
+            <a href="createCompetition">Create Competition</a>
+            <a href="validateTVPSSInfo">Validate School TVPSS Information</a>
+            <a href="monitorTVPSSResource">Monitor School TVPSS Resources</a>
+            <a href="/tvpss_system/logout">Log Out</a>
+        </div>
+    </div>
+ <div class="container">
+        <!-- Competition Information -->
+        <div class="competition-info">
+            <h2 th:text="${competition.name}">Competition Name</h2>
+            <p><strong>Status:</strong> <span th:text="${competition.status}">Status</span></p>
+            <p><strong>District:</strong> <span th:text="${competition.district.displayName}">District</span></p>
+            <p><strong>Date:</strong> 
+                <span th:text="${#temporals.format(competition.startDate, 'dd-MM-yyyy')}">Start Date</span> to 
+                <span th:text="${#temporals.format(competition.endDate, 'dd-MM-yyyy')}">End Date</span>
+            </p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <h3>Total Participants</h3>
+                <p th:text="${participants.size()}">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Districts Represented</h3>
+                <p th:text="${#sets.size(#lists.toSet(participants.![user.district]))}">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Schools Participating</h3>
+                <p th:text="${#sets.size(#lists.toSet(participants.![user.school]))}">0</p>
+            </div>
+             </div>
+
+        <!-- Participants Table -->
+        <div class="participants-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Teacher Name</th>
+                        <th>School</th>
+                        <th>District</th>
+                        <th>Join Date</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="participant : ${participants}">
+                        <td th:text="${participant.user.fullName}">Teacher Name</td>
+                        <td th:text="${participant.user.school}">School</td>
+                        <td th:text="${participant.user.district.displayName}">District</td>
+                        <td th:text="${#temporals.format(participant.joinDate, 'dd-MM-yyyy HH:mm')}">Join Date</td>
+                        <td th:text="${participant.user.email}">Email</td>
+                        <td th:text="${participant.user.phone}">Phone</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer>
+        © TVPSS, All Rights Reserved
+    </footer>
+</body>
+</html>

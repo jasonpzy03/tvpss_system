@@ -19,9 +19,28 @@ public class TeacherService {
 	        return teacherDao.findAll();      
 	    }
 	     
-	    @Transactional
+	    @Transactional 
 	    // Method to get a competition by its ID
 	    public Competition getCompetitionById(Long competitionId) {
-	        return teacherDao.findById(competitionId);
+	        return teacherDao.findById(competitionId); 
+	    } 
+	    
+	    @Transactional
+	    public void joinCompetition(Long competitionId, String username) throws Exception {
+	        if (teacherDao.hasUserJoinedCompetition(competitionId, username)) {
+	            throw new Exception("You have already joined this competition");
+	        } 
+	        teacherDao.joinCompetition(competitionId, username);
+	    }  
+
+	    @Transactional 
+	    public List<Competition> getUserCompetitions(String username) {
+	        return teacherDao.getUserCompetitions(username);
 	    }
+
+	    @Transactional
+	    public boolean hasUserJoinedCompetition(Long competitionId, String username) {
+	        return teacherDao.hasUserJoinedCompetition(competitionId, username);
+	    }
+	   
 }
