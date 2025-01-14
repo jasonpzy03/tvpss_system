@@ -38,7 +38,7 @@ public class JPNJDao {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	            return new ArrayList<>();
-	        }
+	        }   
 	    }
 
 	    @SuppressWarnings("unchecked")

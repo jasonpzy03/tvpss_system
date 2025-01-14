@@ -88,11 +88,12 @@
     <div class="navbar">
         <div class="logo">TVPSS SMART MANAGEMENT SYSTEM</div>
         <div>
-            <a href="dashboard">Home</a>
-            <a href="createCompetition">Create Competition</a>
-            <a href="validateTVPSSInfo">Validate School TVPSS Information</a>
-            <a href="monitorTVPSSResource">Monitor School TVPSS Resources</a>
-            <a href="#">Log Out</a>
+          	<a th:href="@{/teacher/dashboard}">Home</a>
+            <a th:href="@{/teacher/availablecompetitions}">Available Competitions</a>
+            <a th:href="@{/teacher/mycompetitions}">My Competitions</a>
+            <a th:href="@{/teacher/updateinformation}">Update TVPSS Information</a>
+            <a th:href="@{/teacher/crewapplications}">View TVPSS Crew Application</a>
+            <a href="/tvpss_system/logout">Log Out</a>
         </div>
     </div>
 

@@ -57,7 +57,7 @@ public class TeacherController {
         // Return the Thymeleaf template for the competition details page
         return "competition_details";  // This should correspond to your HTML page
     }  
-      
+       
     @GetMapping("/availablecompetitions") 
     public String availableCompetitions(Model model) {
     	List<Competition> competitions = teacherService.getAllCompetitions();

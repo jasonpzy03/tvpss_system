@@ -41,7 +41,7 @@ public class JPNJService {
         return jpnjDao.getOngoingCompetitions();
     }
 
-    public Competition getCompetitionById(Long id) {
+    public Competition getCompetitionById(Long id) {   
     	return jpnjDao.getCompetitionById(id);
     }
     

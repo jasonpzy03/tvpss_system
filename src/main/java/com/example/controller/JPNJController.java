@@ -20,7 +20,7 @@ import com.example.entity.Participant;
 import com.example.service.JPNJService;    
 
 @Controller
-@RequestMapping("/jpnj")
+@RequestMapping("/jpnj")   
 public class JPNJController {
 
 	@Autowired
@@ -35,7 +35,7 @@ public class JPNJController {
             List<Competition> ongoingCompetitions = jpnjService.getOngoingCompetitions();
             List<Competition> allCompetitions = jpnjService.getAllCompetitions();
             List<Participant> participants = jpnjService.getAllParticipants();
- 
+  
             // Add to model
             model.addAttribute("upcomingCompetitions", upcomingCompetitions);
             model.addAttribute("ongoingCompetitions", ongoingCompetitions);
