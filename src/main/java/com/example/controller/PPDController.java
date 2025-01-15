@@ -165,11 +165,6 @@ public class PPDController {
 	        }
 	    }
 	
-	@GetMapping("/validateTVPSSInfo")
-    public String validateTVPSSInfoPage() {
-        return "tvpss_validation";
-    }
-	
 	@GetMapping("/monitorTVPSSResource")
 
 	public String monitorTVPSSResourcePage(Model model) {
