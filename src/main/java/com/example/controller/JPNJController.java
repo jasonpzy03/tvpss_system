@@ -37,13 +37,14 @@ public class JPNJController {
             List<Competition> ongoingCompetitions = jpnjService.getOngoingCompetitions();
             List<Competition> allCompetitions = jpnjService.getAllCompetitions();
             List<Participant> participants = jpnjService.getAllParticipants();
+            Long totalSchools = jpnjService.getTotalSchools();
   
             // Add to model
-            model.addAttribute("upcomingCompetitions", upcomingCompetitions);
+            model.addAttribute("upcomingCompetitions", upcomingCompetitions); 
             model.addAttribute("ongoingCompetitions", ongoingCompetitions);
             model.addAttribute("allCompetitions", allCompetitions); 
             model.addAttribute("participants", participants);
-            model.addAttribute("totalSchools", 50);  
+            model.addAttribute("totalSchools", totalSchools); 
 
             return "jpnj_dashboard";   
         } catch (Exception e) {

@@ -52,8 +52,11 @@
         }
 
         .info {
-            margin-bottom: 20px;
-            font-size: 16px;
+	        display: flex;
+	        align-items: center;
+	        gap: 5px;  /* Space between text and number */
+	        font-size: 16px;
+	        margin: 10px 0;  
         }
 
         /* Table Styles */
@@ -136,6 +139,16 @@
 	    .action-btn:hover {
 	        opacity: 0.8;
 	    }
+	    
+	    .stat-number {
+           font-size: 20px;
+        }
+
+        .stat-label {
+             font-weight: bold;
+        }
+        
+	    
         /* Footer Styles */
         footer {
             text-align: center;
@@ -165,8 +178,9 @@
         
         
         
-        <div class="info">
-            <strong>NUMBER OF SCHOOLS:</strong> 
+        <div class="info">          
+        	<div class="stat-label"><strong>Number of Schools: </strong></div>
+        	<div class="stat-number" th:text="${totalSchools}"></div>
         </div>
 
         <div class="info">

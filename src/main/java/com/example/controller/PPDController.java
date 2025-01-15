@@ -27,6 +27,7 @@ import com.example.entity.TVPSSInformation;
 import com.example.repository.InSchoolRecordingDAO;
 import com.example.repository.OutSchoolRecordingDAO;
 import com.example.repository.TVPSSInformationDAO;
+import com.example.service.JPNJService;
 import com.example.service.PPDService;
 import com.example.service.SchoolService;
 
@@ -38,6 +39,9 @@ public class PPDController {
 	 private PPDService ppdService;
 	 
 	 @Autowired
+	 private JPNJService jpnjService;
+	 
+	 @Autowired
 	 private SchoolService schoolService; // Inject the school service
 	  
 	@GetMapping("/dashboard")
@@ -45,12 +49,14 @@ public class PPDController {
 		District[] districts = District.values();
 		   
 	    List<Competition> competitionList = ppdService.getAllCompetitions(); 
-	    List<Participant> participants = ppdService.getAllParticipants();
+	    List<Participant> participants = ppdService.getAllParticipants();    
+	    Long totalSchools = jpnjService.getTotalSchools();
 
 	    model.addAttribute("competitions", competitionList);
         model.addAttribute("participants", participants);
 	    model.addAttribute("districts", districts);
 	    model.addAttribute("competitionList", competitionList);  
+	    model.addAttribute("totalSchools", totalSchools);      
 	    return "ppd_dashboard";
 	} 
 	
