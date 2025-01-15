@@ -12,12 +12,34 @@
         http://www.springframework.org/schema/mvc  
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
         
-        <context:component-scan base-package="com.example.controller"></context:component-scan>
+        <mvc:annotation-driven/>
         
-<bean id="viewResolver"
-	class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
-	<property name="prefix" value="/WEB-INF/view/" />
-	<property name="suffix" value=".jsp" />
-</bean>
+        <context:component-scan base-package="com.example.controller"></context:component-scan>
+        <context:component-scan base-package="com.example.service"></context:component-scan>
+        <context:component-scan base-package="com.example.entity"></context:component-scan>
+        <context:component-scan base-package="com.example.repository"></context:component-scan>
+        <context:component-scan base-package="config"></context:component-scan>
+        
+<bean id="templateResolver"
+		class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+		<property name="prefix" value="WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML" />
+		<property name="characterEncoding" value="UTF-8" />
+	</bean>
+
+	<bean id="templateEngine"
+		class="org.thymeleaf.spring5.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+	</bean>
+
+	<bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<property name="characterEncoding" value="UTF-8" />
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+
+
 
 </beans>

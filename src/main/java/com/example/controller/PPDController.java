@@ -21,6 +21,12 @@ import com.example.entity.School;
 
 import com.example.entity.District;
 import com.example.entity.Participant;
+import com.example.entity.InSchoolRecording;
+import com.example.entity.OutSchoolRecording;
+import com.example.entity.TVPSSInformation;
+import com.example.repository.InSchoolRecordingDAO;
+import com.example.repository.OutSchoolRecordingDAO;
+import com.example.repository.TVPSSInformationDAO;
 import com.example.service.PPDService;
 import com.example.service.SchoolService;
 
@@ -173,6 +179,69 @@ public class PPDController {
 	}
 
 
+	 // POST mapping to handle form submission
+    @PostMapping("/createCompetition")
+    public String createCompetition(@RequestParam("competitionName") String competitionName,
+                                    @RequestParam("competitionDescription") String competitionDescription,
+                                    Model model) {
+        // Create a new competition object
+        Competition competition = new Competition();
+        competition.setName(competitionName);
+        competition.setDescription(competitionDescription);
+
+        // Save the competition using the service
+        ppdService.saveCompetition(competition);
+
+        // Add a success message to the model
+        model.addAttribute("successMessage", "Competition created successfully!");
+
+        // Redirect back to the create competition page
+        return "create_competition";
+    }
+    
+    @Autowired
+    private TVPSSInformationDAO tvpssInformationDAO;
+    
+    @Autowired
+    private InSchoolRecordingDAO inSchoolRecordingDAO;
+    
+    @Autowired
+    private OutSchoolRecordingDAO outSchoolRecordingDAO;
+	
+	@RequestMapping("/validateTVPSSInfo")
+    public String validateTVPSSInfoPage(Model model) {
+        // Fetch all TVPSS Information records
+        List<TVPSSInformation> submissions = tvpssInformationDAO.findAll();
+        model.addAttribute("submissions", submissions);
+        return "tvpss_validation"; // Returns the HTML file name
+    }
+	
+	@GetMapping("/tvpss_submission/{submissionid}")
+	public String validateTVPSSInfoPage(@PathVariable Long submissionid, Model model) {
+	    // Fetch the TVPSS Information record by ID
+	    TVPSSInformation submission = tvpssInformationDAO.findById(submissionid);
+	    
+	    if (submission == null) {
+	        // If the submission is not found, redirect to an error page or show an appropriate message
+	        model.addAttribute("errorMessage", "Submission not found for ID: " + submissionid);
+	        return "error_page"; // Replace with the actual error page name
+	    }
+
+	    // Fetch all In-School and Out-School Recording records related to the submission
+	    List<InSchoolRecording> inSchoolRecordings = inSchoolRecordingDAO.findByTvpssInformationId(submissionid);
+	    List<OutSchoolRecording> outSchoolRecordings = outSchoolRecordingDAO.findByTvpssInformationId(submissionid);
+
+	    // Add data to the model
+	    model.addAttribute("submission", submission);
+	    model.addAttribute("inSchoolRecordings", inSchoolRecordings);
+	    model.addAttribute("outSchoolRecordings", outSchoolRecordings);
+
+	    // Return the name of the view
+	    return "tvpss_submission_verification"; // Name of the Thymeleaf HTML file
+	}
+	
+	
+	@RequestMapping("/monitorTVPSSResource")
     public String monitorTVPSSResourcePage() {
         return "monitor_tvpss_resource";
     }

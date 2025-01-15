@@ -26,6 +26,12 @@
         <servlet-name>myFrontController</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
+        <!-- Multipart config added here -->
+        <multipart-config>
+            <max-file-size>10000000</max-file-size> <!-- Set the max file size -->
+            <max-request-size>10000000</max-request-size> <!-- Set the max request size -->
+            <file-size-threshold>0</file-size-threshold> <!-- Set threshold to 0 to always store files on disk -->
+        </multipart-config>
     </servlet>
 
     <!-- URL Pattern Mapping -->
@@ -33,6 +39,6 @@
         <servlet-name>myFrontController</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+	
 
-  
 </web-app>

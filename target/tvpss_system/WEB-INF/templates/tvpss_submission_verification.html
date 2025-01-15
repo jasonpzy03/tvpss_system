@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify Submission Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            height: 100vh;
+        }
+        .header {
+            background-color: #101820;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .header span {
+            font-size: 18px;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .header a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            margin-top: 10vh;
+            padding: 20px;
+            width: 80%;
+            margin: 0 auto;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .details {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 20px;
+        }
+        .details table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .details table th, .details table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        .details table th {
+            background-color: #f4f4f4;
+        }
+        .actions {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .verify-button, .reject-button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .verify-button {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .verify-button:hover {
+            background-color: #27ae60;
+        }
+        .reject-button {
+            background-color: #e74c3c;
+            color: white;
+            margin-left: 10px;
+        }
+        .reject-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span>TVPSS SMART MANAGEMENT SYSTEM</span>
+        <nav>
+            <a href="#">Log Out</a>
+        </nav>
+    </div>
+
+    <div class="content">
+        <h1>Submission Status</h1>
+
+        <!-- General Submission Details -->
+        <div class="details">
+            <table>
+                <tr>
+                    <th>Submission ID</th>
+                    <td th:text="${submission.id}"></td>
+                </tr>
+                <tr>
+                    <th>School Name</th>
+                    <td th:text="${submission.school}"></td>
+                </tr>
+                <tr>
+                    <th>Date Submitted</th>
+                    <td th:text="${#dates.format(submission.dateSubmitted, 'dd/MM/yyyy')}"></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        <span class="status" th:text="${submission.status}"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- TVPSS Information Submitted -->
+        <h2 style="margin-top: 40px;">TVPSS Information Submitted</h2>
+        <div class="details">
+            <table>
+                <tr>
+                    <th>Using Greenscreen?</th>
+                    <td>
+                        <span th:text="${submission.greenScreenUsed == 1 ? 'Yes' : 'No'}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Recording Equipment</th>
+                    <td>
+                        <span th:text="${submission.recordingEquipment}"></span>
+                    </td>
+                </tr>
+                <tr>
+				    <th>YouTube Channel Link</th>
+				    <td>
+				        <a th:href="${submission.youtubeChannelLink}" th:text="${submission.youtubeChannelLink}" target="_blank"></a>
+				    </td>
+				</tr>
+				<tr>
+				    <th>TVPSS Logo</th>
+				    <td>
+				        <img src="/tvpss_system/images/evidences/1736595370132_channels4_profile.jpg" alt="TVPSS Logo" style="max-width: 150px; height: auto;" />
+				    </td>
+				</tr>
+
+            </table>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button class="verify-button" onclick="alert('Submission Verified')">Verify</button>
+            <button class="reject-button" onclick="alert('Submission Rejected')">Reject</button>
+        </div>
+    </div>
+</body>
+</html>

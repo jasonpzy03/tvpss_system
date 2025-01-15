@@ -1,6 +1,5 @@
 package config;
 
-
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -31,13 +30,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    
 	    @Override
 	    protected void configure(HttpSecurity http) throws Exception {
-	        http.authorizeRequests()
+	    	http
+	        .authorizeRequests()
 	            // Restrict access based on roles
 	            .antMatchers("/ppd/**").hasRole("PPDADMIN")      // URLs under /admin/ require ADMIN role
 	            .antMatchers("/jpnj/**").hasRole("JPNJADMIN")      // URLs under /sales/ require SALES role
 	            .antMatchers("/teacher/**").hasRole("TEACHER")
 	            .antMatchers("/student/**").hasRole("STUDENT")// URLs under /customer/ require CUSTOMER role
-	            .antMatchers("/", "/home").permitAll()       
+	            .antMatchers("/", "/home").permitAll()   
+	            .antMatchers("/images/**").permitAll()
 	            .antMatchers("/register").permitAll()   // Public access to "/" and "/home"
 	            .anyRequest().authenticated()                  // All other requests require authentication
 	            .and()
@@ -45,9 +46,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	                .permitAll()
 	                .successHandler(customAuthenticationSuccessHandler())
 	            .and()
+	            .csrf()
+	            .ignoringAntMatchers("/teacher/submitSchoolTVPSSInfo")
+	            .and()
 	            .logout()
 	                .permitAll();
+
 	    }
+
 	    
 	    private AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
 	        return (request, response, authentication) -> {
