@@ -1,9 +1,6 @@
 package com.example.controller;
 
-<<<<<<< Updated upstream
 import java.time.LocalDate;
-=======
->>>>>>> Stashed changes
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +16,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.example.entity.Competition;
-<<<<<<< Updated upstream
 
 import com.example.entity.School;
 
 import com.example.entity.District;
 import com.example.entity.Participant;
-=======
 import com.example.entity.InSchoolRecording;
 import com.example.entity.OutSchoolRecording;
 import com.example.entity.TVPSSInformation;
 import com.example.repository.InSchoolRecordingDAO;
 import com.example.repository.OutSchoolRecordingDAO;
 import com.example.repository.TVPSSInformationDAO;
->>>>>>> Stashed changes
 import com.example.service.PPDService;
 import com.example.service.SchoolService;
 
@@ -98,7 +92,6 @@ public class PPDController {
 	    return "redirect:/ppd/dashboard";
 	}
 	
-<<<<<<< Updated upstream
 	 @GetMapping("/editCompetition/{id}")
 	    public String editCompetitionForm(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
 	        try {
@@ -184,28 +177,6 @@ public class PPDController {
 	    model.addAttribute("schools", schools); // Add the schools to the model
 	    return "monitor_tvpss_resource"; // Return the name of the view
 	}
-
-
-=======
-	 // POST mapping to handle form submission
-    @PostMapping("/createCompetition")
-    public String createCompetition(@RequestParam("competitionName") String competitionName,
-                                    @RequestParam("competitionDescription") String competitionDescription,
-                                    Model model) {
-        // Create a new competition object
-        Competition competition = new Competition();
-        competition.setName(competitionName);
-        competition.setDescription(competitionDescription);
-
-        // Save the competition using the service
-        ppdService.saveCompetition(competition);
-
-        // Add a success message to the model
-        model.addAttribute("successMessage", "Competition created successfully!");
-
-        // Redirect back to the create competition page
-        return "create_competition";
-    }
     
     @Autowired
     private TVPSSInformationDAO tvpssInformationDAO;
@@ -250,7 +221,6 @@ public class PPDController {
 	
 	
 	@RequestMapping("/monitorTVPSSResource")
->>>>>>> Stashed changes
     public String monitorTVPSSResourcePage() {
         return "monitor_tvpss_resource";
     }

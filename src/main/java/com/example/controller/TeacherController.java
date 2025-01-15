@@ -1,6 +1,5 @@
 package com.example.controller;
 
-<<<<<<< Updated upstream
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import com.example.service.TeacherService;
 import com.example.entity.Competition;
 import com.example.entity.CrewApplication;
 import com.example.entity.District;
-=======
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -50,7 +48,6 @@ import com.example.repository.InSchoolRecordingDAO;
 import com.example.repository.OutSchoolRecordingDAO;
 import com.example.repository.TVPSSInformationDAO;
 import com.example.repository.UserDAO;
->>>>>>> Stashed changes
 
 @Controller
 @RequestMapping("/teacher")

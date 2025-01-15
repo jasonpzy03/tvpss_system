@@ -1,4 +1,5 @@
 package com.example.repository;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.entity.TVPSSInformation;
-
-import java.util.List;
 
 @Repository
 public class TVPSSInformationDAO {
