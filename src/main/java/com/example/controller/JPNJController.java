@@ -166,7 +166,7 @@ public class JPNJController {
            model.addAttribute("studioLevelStats", studioLevelStats);
            model.addAttribute("tvpssVersionStats", tvpssVersionStats);
            model.addAttribute("totalSchools", totalSchools);
-         
+            
         return "jpnj_statistics";
     }
 

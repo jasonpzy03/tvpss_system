@@ -110,17 +110,46 @@
     </div>
 
      <script th:inline="javascript">
+     
+	     function formatVersionLabel(version) {
+	         // Map raw version numbers to formatted labels
+	         const versionMap = {
+	             '1': 'Version 1',
+	             '2': 'Version 2',
+	             '3': 'Version 3',
+	             '4': 'Version 4'
+	         };
+	         return versionMap[version] || version;
+	     }
+	     
+	     function formatStudioLabel(level) {
+	         // Map raw level values to formatted labels
+	         const levelMap = {
+	             '1': 'Beginner',
+	             '2': 'Intermediate',
+	             '3': 'Advance'
+	         };
+	         return levelMap[level] || level;
+	     }
+	     
+	     
+	     
         // Studio Level Chart
         const studioLevelData = /*[[${studioLevelStats}]]*/ {};
+        
+        const formattedStudioData = {
+                labels: Object.keys(studioLevelData).map(formatStudioLabel),
+                values: Object.values(studioLevelData)
+            };
+        
         new Chart(document.getElementById('studioLevelChart'), {
             type: 'pie',
             data: {
-                labels: Object.keys(studioLevelData),
+                labels: formattedStudioData.labels,
                 datasets: [{
-                    data: Object.values(studioLevelData),
+                    data: formattedStudioData.values,
                     backgroundColor: [
-                        '#4CAF50', '#2196F3', '#FFC107', '#F44336',
-                        '#9C27B0', '#00BCD4', '#FF5722', '#795548'
+                        '#4CAF50', '#2196F3', '#FFC107'
                     ]
                 }]
             },
@@ -140,12 +169,19 @@
 
         // TVPSS Version Chart
         const tvpssVersionData = /*[[${tvpssVersionStats}]]*/ {};
+        
+        const formattedVersionData = {
+                labels: Object.keys(tvpssVersionData).map(formatVersionLabel),
+                values: Object.values(tvpssVersionData)
+            };
+        
+        
         new Chart(document.getElementById('tvpssVersionChart'), {
             type: 'doughnut',
             data: {
-                labels: Object.keys(tvpssVersionData),
+                labels: formattedVersionData.labels,
                 datasets: [{
-                    data: Object.values(tvpssVersionData),
+                    data: formattedVersionData.values,
                     backgroundColor: [
                         '#2196F3', '#4CAF50', '#FFC107', '#F44336'
                     ]

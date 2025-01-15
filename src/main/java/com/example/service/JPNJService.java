@@ -50,7 +50,7 @@ public class JPNJService {
     @Transactional(readOnly = true)
     public List<Participant> getAllParticipants() {
         return jpnjDao.getAllParticipants();
-    } 
+    }  
     
     
     public Map<String, Long> getStudioLevelStatistics() {
