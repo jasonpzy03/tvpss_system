@@ -32,7 +32,7 @@ public class TeacherService {
 	        } 
 	        teacherDao.joinCompetition(competitionId, username);
 	    }  
-
+  
 	    @Transactional 
 	    public List<Competition> getUserCompetitions(String username) {
 	        return teacherDao.getUserCompetitions(username);

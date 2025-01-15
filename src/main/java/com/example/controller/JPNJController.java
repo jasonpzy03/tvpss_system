@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.entity.Competition;
 import com.example.entity.District;
 import com.example.entity.Participant;
+import com.example.entity.School;
 import com.example.service.JPNJService;    
 
 @Controller
@@ -155,7 +157,16 @@ public class JPNJController {
           
 
     @GetMapping("/statistics")
-    public String statisticsPage() {
+    public String statisticsPage(Model model) {
+    	   Map<String, Long> studioLevelStats = jpnjService.getStudioLevelStatistics();
+           Map<String, Long> tvpssVersionStats = jpnjService.getTVPSSVersionStatistics();
+           Long totalSchools = jpnjService.getTotalSchools();
+            
+           // Add to model
+           model.addAttribute("studioLevelStats", studioLevelStats);
+           model.addAttribute("tvpssVersionStats", tvpssVersionStats);
+           model.addAttribute("totalSchools", totalSchools);
+         
         return "jpnj_statistics";
     }
 

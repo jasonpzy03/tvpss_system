@@ -14,7 +14,7 @@ public class School {
     private String videoUrl; // URL for the video content
     private String equipment; // Add this field
     private String studioLevel; // Add this field
-
+    private String tvpssVersion;
     
     
     // Getters and Setters
@@ -58,4 +58,12 @@ public class School {
     public void setStudioLevel(String studioLevel) {
         this.studioLevel = studioLevel;
     }
+
+	public String getTvpssVersion() {
+		return tvpssVersion;
+	}
+
+	public void setTvpssVersion(String tvpssVersion) {
+		this.tvpssVersion = tvpssVersion;
+	}
 }

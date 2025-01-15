@@ -157,7 +157,7 @@ public class TeacherController {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/teacher/availablecompetitions";
         } 
-    } 
+    }  
 
     @GetMapping("/mycompetitions")
     public String myCompetitions(Model model, Authentication authentication) {

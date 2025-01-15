@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.entity.Competition;
 import com.example.entity.Participant;
+import com.example.entity.School;
 import com.example.repository.JPNJDao;
 
 @Service
@@ -48,6 +50,19 @@ public class JPNJService {
     @Transactional(readOnly = true)
     public List<Participant> getAllParticipants() {
         return jpnjDao.getAllParticipants();
+    } 
+    
+    
+    public Map<String, Long> getStudioLevelStatistics() {
+        return jpnjDao.getSchoolsByStudioLevel();
+    }
+    
+    public Map<String, Long> getTVPSSVersionStatistics() {
+        return jpnjDao.getSchoolsByTVPSSVersion();
+    }
+    
+    public Long getTotalSchools() {
+        return jpnjDao.getTotalSchools();
     }
   
 }

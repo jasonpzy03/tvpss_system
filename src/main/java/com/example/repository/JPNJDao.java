@@ -1,7 +1,9 @@
 package com.example.repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.entity.Competition;
 import com.example.entity.Participant;
+import com.example.entity.School;
 
 @Repository
 public class JPNJDao {
@@ -101,5 +104,49 @@ public class JPNJDao {
 	            "JOIN FETCH cp.user " +
 	            "ORDER BY cp.joinDate DESC", Participant.class)
 	            .getResultList();
+	    }
+	   
+	    
+	    public Map<String, Long> getSchoolsByStudioLevel() {
+	        Session session = sessionFactory.getCurrentSession();
+	        
+	        String hql = "SELECT s.studioLevel, COUNT(s) FROM School s " +
+	                     "WHERE s.studioLevel IS NOT NULL " +
+	                     "GROUP BY s.studioLevel";
+	                     
+	        List<Object[]> results = session.createQuery(hql).getResultList();
+	        
+	        Map<String, Long> statistics = new HashMap<>();
+	        for (Object[] result : results) {
+	            String studioLevel = (String) result[0];
+	            Long count = (Long) result[1];
+	            statistics.put(studioLevel, count);
+	        }
+	        
+	        return statistics;
+	    }
+	    
+	    public Map<String, Long> getSchoolsByTVPSSVersion() {
+	        Session session = sessionFactory.getCurrentSession();
+	        
+	        String hql = "SELECT s.tvpssVersion, COUNT(s) FROM School s " +
+	                     "WHERE s.tvpssVersion IS NOT NULL " +
+	                     "GROUP BY s.tvpssVersion";
+	                     
+	        List<Object[]> results = session.createQuery(hql).getResultList();
+	        
+	        Map<String, Long> statistics = new HashMap<>();
+	        for (Object[] result : results) {
+	            String version = (String) result[0];
+	            Long count = (Long) result[1];
+	            statistics.put(version, count);
+	        }
+	        
+	        return statistics;
+	    }
+	    
+	    public Long getTotalSchools() {
+	        Session session = sessionFactory.getCurrentSession();
+	        return (Long) session.createQuery("SELECT COUNT(s) FROM School s").uniqueResult();
 	    }
 }

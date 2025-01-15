@@ -2,7 +2,7 @@ package com.example.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-
+ 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes; 
 
 
 import com.example.entity.Competition;
 
 import com.example.entity.School;
 
-import com.example.entity.District;
+import com.example.entity.District; 
 import com.example.entity.Participant;
 import com.example.entity.InSchoolRecording;
 import com.example.entity.OutSchoolRecording;
@@ -72,8 +72,8 @@ public class PPDController {
 	        Model model) { 
        
 	    // Create a new competition object
-	    Competition competition = new Competition();
-	    competition.setName(competitionName);
+	    Competition competition = new Competition(); 
+	    competition.setName(competitionName); 
 	    competition.setDescription(competitionDescription);
 	    competition.setStartDate(startDate);
 	    competition.setEndDate(endDate);
