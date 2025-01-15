@@ -1,6 +1,9 @@
 package com.example.controller;
 
+<<<<<<< Updated upstream
 import java.time.LocalDate;
+=======
+>>>>>>> Stashed changes
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +19,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.example.entity.Competition;
+<<<<<<< Updated upstream
 
 import com.example.entity.School;
 
 import com.example.entity.District;
 import com.example.entity.Participant;
+=======
 import com.example.entity.InSchoolRecording;
 import com.example.entity.OutSchoolRecording;
 import com.example.entity.TVPSSInformation;
 import com.example.repository.InSchoolRecordingDAO;
 import com.example.repository.OutSchoolRecordingDAO;
 import com.example.repository.TVPSSInformationDAO;
+>>>>>>> Stashed changes
 import com.example.service.PPDService;
 import com.example.service.SchoolService;
 
@@ -92,6 +98,7 @@ public class PPDController {
 	    return "redirect:/ppd/dashboard";
 	}
 	
+<<<<<<< Updated upstream
 	 @GetMapping("/editCompetition/{id}")
 	    public String editCompetitionForm(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
 	        try {
@@ -179,6 +186,7 @@ public class PPDController {
 	}
 
 
+=======
 	 // POST mapping to handle form submission
     @PostMapping("/createCompetition")
     public String createCompetition(@RequestParam("competitionName") String competitionName,
@@ -242,6 +250,7 @@ public class PPDController {
 	
 	
 	@RequestMapping("/monitorTVPSSResource")
+>>>>>>> Stashed changes
     public String monitorTVPSSResourcePage() {
         return "monitor_tvpss_resource";
     }
