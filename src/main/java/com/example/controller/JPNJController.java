@@ -44,7 +44,7 @@ public class JPNJController {
             model.addAttribute("ongoingCompetitions", ongoingCompetitions);
             model.addAttribute("allCompetitions", allCompetitions); 
             model.addAttribute("participants", participants);
-            model.addAttribute("totalSchools", totalSchools); 
+            model.addAttribute("totalSchools", totalSchools);  
 
             return "jpnj_dashboard";   
         } catch (Exception e) {

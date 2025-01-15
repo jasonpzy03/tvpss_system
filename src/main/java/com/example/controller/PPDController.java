@@ -51,12 +51,14 @@ public class PPDController {
 	    List<Competition> competitionList = ppdService.getAllCompetitions(); 
 	    List<Participant> participants = ppdService.getAllParticipants();    
 	    Long totalSchools = jpnjService.getTotalSchools();
+	    Long kulaiSchools = ppdService.getKulaiSchoolsCount();
 
 	    model.addAttribute("competitions", competitionList);
         model.addAttribute("participants", participants);
 	    model.addAttribute("districts", districts);
 	    model.addAttribute("competitionList", competitionList);  
 	    model.addAttribute("totalSchools", totalSchools);      
+	    model.addAttribute("kulaiSchools", kulaiSchools);
 	    return "ppd_dashboard";
 	} 
 	

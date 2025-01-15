@@ -15,7 +15,7 @@ public class School {
     private String equipment; // Add this field
     private String studioLevel; // Add this field
     private String tvpssVersion;
-    
+    private String district;
     
     // Getters and Setters
 
@@ -65,5 +65,13 @@ public class School {
 
 	public void setTvpssVersion(String tvpssVersion) {
 		this.tvpssVersion = tvpssVersion;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
 	}
 }

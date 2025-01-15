@@ -62,6 +62,8 @@ public class PPDService {
     public List<Participant> getAllParticipants() {
         return ppdDao.getAllParticipants();
     }
-    
-    
+
+    public Long getKulaiSchoolsCount() {
+        return ppdDao.getKulaiSchoolsCount();
+    }
 }

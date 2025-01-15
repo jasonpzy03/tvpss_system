@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.entity.Competition;
+import com.example.entity.District;
 import com.example.entity.Participant;
 
 @Repository
@@ -82,6 +83,13 @@ public class PPDDao {
 	            "JOIN FETCH cp.user " +
 	            "ORDER BY cp.joinDate DESC", Participant.class)
 	            .getResultList();
+	    }
+	    
+	    public Long getKulaiSchoolsCount() {
+	        Session session = sessionFactory.getCurrentSession();
+	        String hql = "SELECT COUNT(s) FROM School s WHERE s.district = 'KULAI'";
+	        
+	        return (Long) session.createQuery(hql).uniqueResult();
 	    }
 	    
 	    
